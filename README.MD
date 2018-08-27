@@ -41,15 +41,15 @@ kafka.stop();
 ```
 run = kafka.start(in_topic=in_topic, out_topic=out_topic, consumer_group=group_id,
                                  consumer_timeout=-1, balance=False)
-    while run:
-        try:
-            kafka.waitForAction()
-        except Exception as e:
-            loger.error('Kafka出现错误，需要准备重启，原因: {}'.format(e))
-        finally:
-            kafka.stop()
-            run = kafka.start(in_topic=in_topic, out_topic=out_topic, consumer_group=group_id,
-                                     consumer_timeout=-1, balance=False)
+while run:
+    try:
+        kafka.waitForAction()
+    except Exception as e:
+        loger.error('Kafka出现错误，需要准备重启，原因: {}'.format(e))
+    finally:
+        kafka.stop()
+        run = kafka.start(in_topic=in_topic, out_topic=out_topic, consumer_group=group_id,
+                                 consumer_timeout=-1, balance=False)
 ```
 
 ## 1.5. 调用其他服务
