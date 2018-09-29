@@ -131,9 +131,9 @@ class Kafka(object):
                 return True
             else:
                 return False
-        if not self.__init_producer(out_topic):
-            return False
         if not self.__init_consumer(in_topic, consumer_group, consumer_timeout=consumer_timeout, balance=balance):
+            return False
+        if not self.__init_producer(out_topic):
             return False
         self.__run = True
         self.loger.info("****START**** Kafka启动成功.")
